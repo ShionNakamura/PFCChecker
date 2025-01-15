@@ -11,7 +11,7 @@ import SwiftUI
 struct PFCTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BullyOrDietView()
         }
     }
 }
