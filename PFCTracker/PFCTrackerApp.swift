@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct PFCTrackerApp: App {
+    @StateObject var listViewModel:ListViewModel = ListViewModel()
+
     var body: some Scene {
         WindowGroup {
-            BullyOrDietView()
+            NavigationStack {
+                PfcFirstPageView()
+            }
+            .environmentObject(listViewModel)
         }
     }
 }

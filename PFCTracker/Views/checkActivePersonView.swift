@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct CheckActivePersonView: View {
+    
+    @EnvironmentObject var listViewModel: ListViewModel
+    
     var body: some View {
-        NavigationStack {
+     
             ZStack {
                 // Background Gradient
                 RadialGradient(gradient: Gradient(colors: [.purple, .blue]),
@@ -11,70 +14,143 @@ struct CheckActivePersonView: View {
                                endRadius: 500)
                     .ignoresSafeArea()
 
-                VStack(spacing: 30) {
+                VStack(spacing: 20) {
+                    
                     // Title
-                    Text("あなた日常アクティブですか?")
-                        .font(.largeTitle)
+                    Text("あなたは日常アクティブですか?")
+                        .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
-                        .padding(.bottom, 10)
+                        .padding(.top, 210)
                     
                     // Instructions
                     VStack(alignment: .leading, spacing: 10) {
                         Text("例えば...")
-                        Text("もしあなたが立ち仕事の場合は、はいを選択してください。")
-                        Text("もしあなたがデスクワークの場合は、いいえを選択してください。")
-                        Text("もしあなたが普段1万歩以上歩くなら、はいを選択してください。")
+                        Text("• 立ち仕事の場合は、頻繁にするを選択してください。")
+                        Text("• デスクワークの場合は、少しするを選択してください。")
+                        Text("• 全く運動しない場合は、全くしないを選択してください。")
                     }
                     .font(.headline)
                     .foregroundStyle(.white)
                     .padding()
+                    .background(Color.black.opacity(0.4))
+                    .cornerRadius(10)
+                    .padding(.top, 40)
                     
                     Spacer()
-
-                    // Navigation Buttons (Yes / No)
-                    HStack(spacing: 20) {
+                    
+                    // Navigation Buttons
+                    VStack(spacing: 20) {
+                        // Frequently Active
                         NavigationLink(
-                            destination: PFCResultView(), // Destination view
+                            destination: BullyOrDietView(),
                             label: {
-                                Text("はい")
-                                    .font(.largeTitle)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 60)
-                                    .padding()
-                                    .background(Color.blue)
-                                    .cornerRadius(10)
-                                    .shadow(radius: 10)
+                                ButtonLabel(text:  "週6以上運動する", color: .green)
+                                
+                            }
+                        )
+                        .simultaneousGesture(
+                            TapGesture().onEnded {
+                                listViewModel.activeFactor = 1.9
+                                listViewModel.frequencyWorkout = "週6以上運動する"
+                            }
+                        )
+                        NavigationLink(
+                            destination: BullyOrDietView(),
+                            label: {
+                                ButtonLabel(text: "週に4~5回運動する", color: .blue)
+
+                            }
+                        )
+                        .simultaneousGesture(
+                            TapGesture().onEnded {
+                                listViewModel.activeFactor = 1.725
+                                listViewModel.frequencyWorkout =  "週に4~5回運動する"
+                            }
+                        )
+                        NavigationLink(
+                            destination: BullyOrDietView(),
+                            label: {
+                                ButtonLabel(text: "週に２〜３回運動する", color: .yellow)
+                                    
+                            }
+                        )
+                        .simultaneousGesture(
+                            TapGesture().onEnded {
+                                listViewModel.activeFactor = 1.55
+                                listViewModel.frequencyWorkout = "週に２〜３回運動する"
+
                             }
                         )
                         
+                        // Moderately Active
                         NavigationLink(
-                            destination: PFCResultView(), // Destination view
+                            destination: BullyOrDietView(),
                             label: {
-                                Text("いいえ")
-                                    .font(.largeTitle)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 60)
-                                    .padding()
-                                    .background(Color.red)
-                                    .cornerRadius(10)
-                                    .shadow(radius: 10)
+                                ButtonLabel(text: "週に１回は運動する", color: .orange)
+                            }
+                        )
+                        .simultaneousGesture(
+                            TapGesture().onEnded {
+                                listViewModel.activeFactor = 1.375
+                                listViewModel.frequencyWorkout = "週に１回は運動する"
+
+                            }
+                        )
+                        
+                        // Not Active
+                        NavigationLink(
+                            destination: BullyOrDietView(),
+                            label: {
+                                ButtonLabel(text: "全く運動しない", color: .red)
+                            }
+                        )
+                        .simultaneousGesture(
+                            TapGesture().onEnded {
+                                listViewModel.activeFactor = 1.2
+                                listViewModel.frequencyWorkout =  "全く運動しない"
+
                             }
                         )
                     }
-                    .padding(.bottom, 50) // Add space at the bottom
+                    .padding(.horizontal, 20)
+                    
+                    Spacer()
                 }
-                .padding(.horizontal, 20) // Horizontal padding for the VStack
+                .padding(.horizontal, 20)
+                
             }
-        }
+            .navigationTitle("運動頻度")
+            .ignoresSafeArea()
+
+        
+    }
+    
+}
+
+// Reusable Button Label View
+struct ButtonLabel: View {
+    let text: String
+    let color: Color
+    
+    var body: some View {
+        Text(text)
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .background(color)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+        
     }
 }
 
 #Preview {
-    CheckActivePersonView()
+    NavigationStack {
+        CheckActivePersonView()
+    }
+    .environmentObject(ListViewModel())
 }
 

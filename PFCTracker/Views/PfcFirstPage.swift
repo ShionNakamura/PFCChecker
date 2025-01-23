@@ -1,9 +1,19 @@
+//
+//  PfcFirstPage.swift
+//  PFCTracker
+//
+//  Created by 仲村士苑 on 2025/01/17.
+//
+
 import SwiftUI
 
-struct BullyOrDietView: View {
+struct PfcFirstPageView: View {
+    
     @State private var animate: Bool = false
     @State private var navigateToWeightView: Bool = false
-
+    
+    @EnvironmentObject var listViewModel: ListViewModel
+    
     var body: some View {
         
         NavigationStack {
@@ -15,16 +25,17 @@ struct BullyOrDietView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    Text("PFC Checker \(Image(systemName: "checkmark.seal.fill"))")
+                    
+                    Text("Quick PFC Checker \(Image(systemName: "checkmark.seal.fill"))")
                         .font(.title)
                         .padding(.top, 70)
                         .foregroundStyle(.white)
                     
                     Spacer()
                     
-                    Text("あなたは")
+                    Text("あなたの１日で取らないといけないPFCが30秒でわかる")
                         .font(.title)
-                        .lineLimit(1)
+                        .lineLimit(5)
                         .foregroundStyle(.white)
                     
                     Spacer()
@@ -32,33 +43,18 @@ struct BullyOrDietView: View {
                     VStack(spacing: 75) {
                
                         Button {
-                            navigateToWeightView.toggle()
+                            withAnimation(){
+                                navigateToWeightView.toggle()
+                            }
                         } label: {
-                            Text("これから増量します")
-                                .font(.title)
+                            Text("さそっく始める")
+                                .font(.largeTitle)
                                 .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity)
                                 .padding(10)
-                                .background(animate ? .red : .blue)
+                                .background(animate ? .green : .red)
                                 .cornerRadius(10)
-                                .shadow(color: animate ? .red : .blue,
-                                         radius: animate ? 30 : 10,
-                                         x: 0,
-                                         y: animate ? 50 : 30
-                                )
-                        }
-                        
-                        Button {
-                            navigateToWeightView.toggle()
-                        } label: {
-                            Text("これから減量します")
-                                .font(.title)
-                                .foregroundStyle(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(10)
-                                .background(animate ? .blue : .red)
-                                .cornerRadius(10)
-                                .shadow(color: animate ? .blue : .red,
+                                .shadow(color: animate ? .green : .red,
                                          radius: animate ? 30 : 10,
                                          x: 0,
                                          y: animate ? 50 : 30
@@ -75,13 +71,12 @@ struct BullyOrDietView: View {
                 }
                 
                 .navigationDestination(isPresented: $navigateToWeightView) {
-                    WeightView()
-                }
+                    GenderView()
+             }
             }
         }
     }
-    
-    func addAnimation() {
+   private func addAnimation() {
         withAnimation(
             .easeInOut(duration: 2.0)
             .repeatForever()
@@ -92,6 +87,9 @@ struct BullyOrDietView: View {
 }
 
 #Preview {
-    BullyOrDietView()
+    NavigationStack
+    {
+    PfcFirstPageView()
 }
-
+.environmentObject(ListViewModel())
+}
