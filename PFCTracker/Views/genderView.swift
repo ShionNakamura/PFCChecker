@@ -9,10 +9,9 @@ struct GenderView: View {
         NavigationStack {
             ZStack {
                 // Background Gradient
-                RadialGradient(gradient: Gradient(colors: [.purple, .blue]),
-                               center: .center,
-                               startRadius: 5,
-                               endRadius: 500)
+                LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
+                               startPoint: .topLeading,
+                               endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 
                 VStack(spacing: 30) {
@@ -57,7 +56,7 @@ struct GenderView: View {
                         )
                         .simultaneousGesture(
                             TapGesture().onEnded {
-                                listViewModel.gender = true
+                                listViewModel.model.gender = true
                             }
                         )
                         
@@ -78,7 +77,7 @@ struct GenderView: View {
                         )
                         .simultaneousGesture(
                             TapGesture().onEnded {
-                                listViewModel.gender = false
+                                listViewModel.model.gender = false
                             }
                         )
                     }

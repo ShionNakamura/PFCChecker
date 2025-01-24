@@ -10,17 +10,16 @@ struct BullyOrDietView: View {
         
 
             ZStack {
-                RadialGradient(gradient: Gradient(colors: [.purple, .blue]),
-                               center: .center,
-                               startRadius: 5,
-                               endRadius: 500)
+                LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
+                               startPoint: .topLeading,
+                               endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 
                 VStack {
 
                     Spacer()
 
-                    Text("あなたは")
+                    Text("あなたのこれからの目標は...")
                         .font(.title)
                         .lineLimit(1)
                         .foregroundStyle(.white)
@@ -32,7 +31,7 @@ struct BullyOrDietView: View {
                         Button {
                             navigateToWeightView.toggle()
                             listViewModel.bulkingOrDiet = true
-                            listViewModel.goal = "これから増量します"
+                            listViewModel.model.goal = "これから増量します"
                               } label: {
                             Text("これから増量します")
                                 .font(.title)
@@ -51,7 +50,7 @@ struct BullyOrDietView: View {
                         Button {
                             navigateToWeightView.toggle()
                             listViewModel.maintainWeight.toggle()
-                            listViewModel.goal = "このまま維持する"
+                            listViewModel.model.goal = "このまま維持する"
 
                         } label: {
                             Text("このまま維持する")
@@ -72,8 +71,7 @@ struct BullyOrDietView: View {
                             
                             navigateToWeightView.toggle()
                             listViewModel.bulkingOrDiet = false
-                            listViewModel.goal = "これから減量します"
-
+                            listViewModel.model.goal = "これから減量します"
 
                         } label: {
                             Text("これから減量します")
@@ -107,7 +105,7 @@ struct BullyOrDietView: View {
         
     }
     
-    func addAnimation() {
+    private func addAnimation() {
         withAnimation(
             .easeInOut(duration: 2.0)
             .repeatForever()

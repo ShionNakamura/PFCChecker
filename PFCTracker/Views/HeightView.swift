@@ -8,10 +8,9 @@ struct HeightView: View {
     var body: some View {
         ZStack {
             // Background Gradient
-            RadialGradient(gradient: Gradient(colors: [.purple, .blue]),
-                           center: .center,
-                           startRadius: 5,
-                           endRadius: 500)
+            LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
+                           startPoint: .topLeading,
+                           endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             
             VStack {
@@ -24,12 +23,12 @@ struct HeightView: View {
                 
                 Spacer()
                 
-                Text("現在の身長: \(String(format: "%.0f", listViewModel.height)) cm")
+                Text("現在の身長: \(String(format: "%.0f", listViewModel.model.height)) cm")
                     .font(.title)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
                 
-                Slider(value: $listViewModel.height, in: 140...220, step: 0.1)
+                Slider(value: $listViewModel.model.height, in: 140...220, step: 0.1)
                     .padding(.horizontal, 40)
                     .accentColor(.blue)
                     .padding(.vertical, 20)

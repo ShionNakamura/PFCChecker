@@ -8,34 +8,33 @@ struct CheckActivePersonView: View {
      
             ZStack {
                 // Background Gradient
-                RadialGradient(gradient: Gradient(colors: [.purple, .blue]),
-                               center: .center,
-                               startRadius: 5,
-                               endRadius: 500)
+                LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
+                               startPoint: .topLeading,
+                               endPoint: .bottomTrailing)
                     .ignoresSafeArea()
 
                 VStack(spacing: 20) {
                     
                     // Title
-                    Text("あなたは日常アクティブですか?")
+                    Text("あなたは日常運動しますか?")
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
-                        .padding(.top, 210)
+                        .padding(.top, 185)
                     
-                    // Instructions
                     VStack(alignment: .leading, spacing: 10) {
                         Text("例えば...")
-                        Text("• 立ち仕事の場合は、頻繁にするを選択してください。")
+                        Text("• 土日のみ運動する方は。週に週に２〜３回運動するを")
                         Text("• デスクワークの場合は、少しするを選択してください。")
                         Text("• 全く運動しない場合は、全くしないを選択してください。")
                     }
                     .font(.headline)
                     .foregroundStyle(.white)
                     .padding()
+                    .frame(maxWidth: .infinity, minHeight: 210)
                     .background(Color.black.opacity(0.4))
                     .cornerRadius(10)
-                    .padding(.top, 40)
+                    .padding(.top, 10)
                     
                     Spacer()
                     
@@ -45,43 +44,46 @@ struct CheckActivePersonView: View {
                         NavigationLink(
                             destination: BullyOrDietView(),
                             label: {
-                                ButtonLabel(text:  "週6以上運動する", color: .green)
+                                ButtonLabel(text: "週6以上運動する", color: .green)
                                 
                             }
                         )
                         .simultaneousGesture(
                             TapGesture().onEnded {
-                                listViewModel.activeFactor = 1.9
-                                listViewModel.frequencyWorkout = "週6以上運動する"
+                                listViewModel.model.activeFactor = 1.9
+                                listViewModel.model.frequencyWorkout = "週6以上運動する"
                             }
                         )
                         NavigationLink(
                             destination: BullyOrDietView(),
                             label: {
-                                ButtonLabel(text: "週に4~5回運動する", color: .blue)
+                                ButtonLabel(text: " 週に4~5回運動する", color: .blue)
 
                             }
                         )
                         .simultaneousGesture(
                             TapGesture().onEnded {
-                                listViewModel.activeFactor = 1.725
-                                listViewModel.frequencyWorkout =  "週に4~5回運動する"
+                                listViewModel.model.activeFactor = 1.725
+                                listViewModel.model.frequencyWorkout =  " 週に4~5回運動する"
                             }
                         )
                         NavigationLink(
                             destination: BullyOrDietView(),
                             label: {
-                                ButtonLabel(text: "週に２〜３回運動する", color: .yellow)
+                                ButtonLabel(text:" 週に2~3回運動する", color: .yellow)
                                     
                             }
+                            
                         )
+                        
                         .simultaneousGesture(
                             TapGesture().onEnded {
-                                listViewModel.activeFactor = 1.55
-                                listViewModel.frequencyWorkout = "週に２〜３回運動する"
+                                listViewModel.model.activeFactor = 1.55
+                                listViewModel.model.frequencyWorkout = "週に２〜３回運動する"
 
                             }
                         )
+                        
                         
                         // Moderately Active
                         NavigationLink(
@@ -92,8 +94,8 @@ struct CheckActivePersonView: View {
                         )
                         .simultaneousGesture(
                             TapGesture().onEnded {
-                                listViewModel.activeFactor = 1.375
-                                listViewModel.frequencyWorkout = "週に１回は運動する"
+                                listViewModel.model.activeFactor = 1.375
+                                listViewModel.model.frequencyWorkout = "週に１回は運動する"
 
                             }
                         )
@@ -107,8 +109,8 @@ struct CheckActivePersonView: View {
                         )
                         .simultaneousGesture(
                             TapGesture().onEnded {
-                                listViewModel.activeFactor = 1.2
-                                listViewModel.frequencyWorkout =  "全く運動しない"
+                                listViewModel.model.activeFactor = 1.2
+                                listViewModel.model.frequencyWorkout =  "全く運動しない"
 
                             }
                         )

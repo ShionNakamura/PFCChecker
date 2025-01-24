@@ -9,10 +9,9 @@ struct WeightView: View {
 
             ZStack {
                 // Background Gradient
-                RadialGradient(gradient: Gradient(colors: [.purple, .blue]),
-                               center: .center,
-                               startRadius: 5,
-                               endRadius: 500)
+                LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
+                               startPoint: .topLeading,
+                               endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 
                 VStack {
@@ -24,12 +23,12 @@ struct WeightView: View {
                         .padding(.top, 50)
                     
                     Spacer()
-                    Text("現在の体重: \(String(format: "%.1f", listViewModel.weight)) kg")
+                    Text("現在の体重: \(String(format: "%.1f", listViewModel.model.weight)) kg")
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
                     
-                    Slider(value: $listViewModel.weight, in: 40...110, step: 0.1)
+                    Slider(value: $listViewModel.model.weight, in: 40...110, step: 0.1)
                         .padding(.horizontal, 40)
                         .accentColor(.blue)
                         .padding(.vertical, 20)
