@@ -53,13 +53,11 @@ class ListViewModel:ObservableObject{
     func BMRCalc()-> Double{
 
         if model.gender {
-            // menn
             let bmrForMan = (10 * model.weight) + (6.25 * model.height) - (5 * model.age) + 5
             return bmrForMan
         }
 
         else{
-            // women
             let bmrForWoman = (10 * model.weight) + (6.25 * model.height) - (5 * model.age) - 161
             return bmrForWoman
         }
@@ -83,10 +81,8 @@ class ListViewModel:ObservableObject{
 
     func calcCalories() -> Double {
         if bulkingOrDiet {
-            // Bulking
             return TDEECalc() * (1 + bulkingPercentage)
         } else {
-            // Dieting
             return TDEECalc() * (1 - dietingPercentage)
         }
     }

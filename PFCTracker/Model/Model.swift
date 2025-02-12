@@ -9,11 +9,12 @@ import Foundation
 
 struct PFCModel{
     
-    var gender: Bool  // false = woman, true = man
+    // false = woman, true = man
+    var gender: Bool
     var weight: Double
     var height: Double
     var age: Double
-    var activeFactor: Double  // Default: Sedentary
+    var activeFactor: Double
     var frequencyWorkout: String
     var goal: String
     
