@@ -2,20 +2,18 @@ import SwiftUI
 
 struct WeightView: View {
     
-    @State private var navigateToNextView: Bool = false // State to control navigation
+    @State private var navigateToNextView: Bool = false
     @EnvironmentObject var listViewModel: ListViewModel
 
     var body: some View {
 
             ZStack {
-                // Background Gradient
                 LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
                                startPoint: .topLeading,
                                endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 
                 VStack {
-                    // Title
                     Text("自分の体重を入力してください")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
@@ -33,12 +31,10 @@ struct WeightView: View {
                         .accentColor(.blue)
                         .padding(.vertical, 20)
                     
-                    
                     Spacer()
                     
-                    // Button to trigger navigation
                     Button(action: {
-                        navigateToNextView.toggle() // Set state to true on button click
+                        navigateToNextView.toggle()
                     }, label: {
                         Text("次へ")
                             .font(.largeTitle)
@@ -53,16 +49,13 @@ struct WeightView: View {
                             .padding(.bottom, 50)
                     })
                     
-                    .padding(.bottom, 60) // Add some bottom padding for button
+                    .padding(.bottom, 60)
                     
                 }
-                .padding(.horizontal, 20) // Horizontal padding for the whole VStack
-                
-                // Navigation when navigateToNextView is true
+                .padding(.horizontal, 20)
                 .navigationDestination(isPresented: $navigateToNextView) {
-                    CheckActivePersonView() // Destination view
+                    CheckActivePersonView()
                 }
-            
         }
             .navigationTitle("体重")
     }
@@ -75,4 +68,5 @@ struct WeightView: View {
     .environmentObject(ListViewModel())
 
 }
+
 

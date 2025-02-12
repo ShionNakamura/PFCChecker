@@ -1,20 +1,18 @@
 import SwiftUI
 
 struct HeightView: View {
-    @State private var navigateToNextView: Bool = false // State to control navigation
+    @State private var navigateToNextView: Bool = false
     @EnvironmentObject var listViewModel: ListViewModel
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
         ZStack {
-            // Background Gradient
             LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             
             VStack {
-                // Title
                 Text("自分の身長を入力してください")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
@@ -35,9 +33,8 @@ struct HeightView: View {
                 
                 Spacer()
                 
-                // Button to trigger navigation to the next view (WeightView)
                 Button(action: {
-                    navigateToNextView.toggle() // Set state to true on button click
+                    navigateToNextView.toggle()
                 }, label: {
                     Text("次へ")
                         .font(.largeTitle)
@@ -52,15 +49,13 @@ struct HeightView: View {
                         .padding(.bottom, 50)
                 })
                 
-                .padding(.bottom, 60) // Add some bottom padding for button
+                .padding(.bottom, 60)
             }
-            .padding(.horizontal, 20) // Horizontal padding for the whole VStack
+            .padding(.horizontal, 20)
 
-            // Navigation when navigateToNextView is true
             .navigationDestination(isPresented: $navigateToNextView) {
-                WeightView() // Destination view
+                WeightView()
             }
-
         }
         .navigationTitle("身長")
     }

@@ -1,9 +1,17 @@
+//
+//  AgeView.swift
+//  PFCTracker
+//
+//  Created by 仲村士苑 on 2025/02/12.
+//
+
 import SwiftUI
 
 struct AgeView: View {
+    
     @EnvironmentObject var listViewModel: ListViewModel
-    @State private var showPicker: Bool = false // State to toggle picker visibility
-    @State private var navigateToNextView: Bool = false // State for navigation
+    @State private var showPicker: Bool = false
+    @State private var navigateToNextView: Bool = false
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -15,25 +23,17 @@ struct AgeView: View {
                 .ignoresSafeArea()
                 
                 VStack {
-                    HStack {
                         Button(action: {
                             dismiss()
                         }) {
                         }
-                        .padding(.top, 20)
-                        .padding(.leading, 20)
-                        Spacer()
-                    }
-                    
                     .padding()
 
-                    // Display the selected age
                     Text("選択した年齢: \(Int(listViewModel.model.age))歳")
                         .font(.title)
                         .foregroundColor(.white)
                         .padding()
                     
-                    // Show Picker when `showPicker` is true
                     if showPicker {
                         Picker("年齢を選択", selection: $listViewModel.model.age
                         ) {
@@ -42,12 +42,10 @@ struct AgeView: View {
                                     .tag(Double(number))
                             }
                         }
-                        
                         .pickerStyle(.wheel)
                         .frame(height: 200)
                         .clipped()
                         
-                        // Done button to hide the picker
                         Button(action: {
                             withAnimation {
                                 showPicker.toggle()
@@ -83,7 +81,6 @@ struct AgeView: View {
                                 
                         }
                         .padding()
-                        // Next button to navigate to HeightView
                         Button(action: {
                             navigateToNextView.toggle()
                         }) {
@@ -103,7 +100,6 @@ struct AgeView: View {
 
             }
             .navigationTitle("年齢")
-            // Navigation to HeightView
             .navigationDestination(isPresented: $navigateToNextView) {
                 HeightView()
             }

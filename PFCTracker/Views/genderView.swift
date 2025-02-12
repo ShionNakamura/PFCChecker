@@ -3,22 +3,20 @@ import SwiftUI
 struct GenderView: View {
     
     @EnvironmentObject var listViewModel: ListViewModel
-    @Environment(\.dismiss) var dismiss  // Use this to dismiss the current view
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
             ZStack {
-                // Background Gradient
                 LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
                                startPoint: .topLeading,
                                endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 
                 VStack(spacing: 30) {
-                    // Back Button
                     HStack {
                         Button(action: {
-                            dismiss()  // Dismiss the current view
+                            dismiss()
                         }) {
                         }
                         .padding(.top, 20)
@@ -28,7 +26,6 @@ struct GenderView: View {
 
                     Spacer()
                     
-                    // Title
                     Text("ご自身の性別を選んでください")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
@@ -37,21 +34,13 @@ struct GenderView: View {
 
                     Spacer()
                     
-                    // Navigation Buttons (Male/Female)
                     HStack(spacing: 20) {
                         NavigationLink(
                             destination: AgeView(),
                             label: {
-                                Text("男性")
-                                    .font(.largeTitle)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 60)
-                                    .padding()
+                                genderBox(text: "男性")
                                     .background(Color.blue)
                                     .cornerRadius(10)
-                                    .shadow(radius: 10)
                             }
                         )
                         .simultaneousGesture(
@@ -63,16 +52,9 @@ struct GenderView: View {
                         NavigationLink(
                             destination: AgeView(),
                             label: {
-                                Text("女性")
-                                    .font(.largeTitle)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 60)
-                                    .padding()
+                                genderBox(text: "女性")
                                     .background(Color.red)
                                     .cornerRadius(10)
-                                    .shadow(radius: 10)
                             }
                         )
                         .simultaneousGesture(
@@ -81,12 +63,21 @@ struct GenderView: View {
                             }
                         )
                     }
-                    .padding(.bottom, 210) // Add space at the bottom
+                    .padding(.bottom, 210)
                 }
-                .padding(.horizontal, 20) // Horizontal padding for the VStack
+                .padding(.horizontal, 20)
             }
             .navigationTitle("性別")
         }
+    }
+    func genderBox(text: String) -> some View {
+        Text(text)
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .padding()
     }
 }
 

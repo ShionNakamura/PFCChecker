@@ -7,7 +7,6 @@ struct CheckActivePersonView: View {
     var body: some View {
      
             ZStack {
-                // Background Gradient
                 LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
                                startPoint: .topLeading,
                                endPoint: .bottomTrailing)
@@ -15,8 +14,7 @@ struct CheckActivePersonView: View {
 
                 VStack(spacing: 20) {
                     
-                    // Title
-                    Text("あなたは日常運動しますか?")
+                    Text("あなたの有酸素運動の頻度は?")
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
@@ -24,9 +22,9 @@ struct CheckActivePersonView: View {
                     
                     VStack(alignment: .leading, spacing: 10) {
                         Text("例えば...")
-                        Text("• 土日のみ運動する方は。週に週に２〜３回運動するを")
-                        Text("• デスクワークの場合は、少しするを選択してください。")
-                        Text("• 全く運動しない場合は、全くしないを選択してください。")
+                        Text("• 土日のみ運動する方は、週に２〜３回運動するを。")
+                        Text("• 平日の１日の平均歩数計が約8000歩以上であれば週に4〜5回運動するを。")
+                        Text("• 全く日常で動かなく１日の平均歩数計が約2000歩以下なら、全くしないを。")
                     }
                     .font(.headline)
                     .foregroundStyle(.white)
@@ -44,8 +42,7 @@ struct CheckActivePersonView: View {
                         NavigationLink(
                             destination: BullyOrDietView(),
                             label: {
-                                ButtonLabel(text: "週6以上運動する", color: .green)
-                                
+                                ButtonLabel(text: "週6回以上", color: .green)
                             }
                         )
                         .simultaneousGesture(
@@ -57,7 +54,7 @@ struct CheckActivePersonView: View {
                         NavigationLink(
                             destination: BullyOrDietView(),
                             label: {
-                                ButtonLabel(text: " 週に4~5回運動する", color: .blue)
+                                ButtonLabel(text: " 週に4~5回", color: .blue)
 
                             }
                         )
@@ -70,12 +67,9 @@ struct CheckActivePersonView: View {
                         NavigationLink(
                             destination: BullyOrDietView(),
                             label: {
-                                ButtonLabel(text:" 週に2~3回運動する", color: .yellow)
-                                    
+                                ButtonLabel(text:" 週に2~3回", color: .yellow)
                             }
-                            
                         )
-                        
                         .simultaneousGesture(
                             TapGesture().onEnded {
                                 listViewModel.model.activeFactor = 1.55
@@ -83,13 +77,10 @@ struct CheckActivePersonView: View {
 
                             }
                         )
-                        
-                        
-                        // Moderately Active
                         NavigationLink(
                             destination: BullyOrDietView(),
                             label: {
-                                ButtonLabel(text: "週に１回は運動する", color: .orange)
+                                ButtonLabel(text: "週に１回", color: .orange)
                             }
                         )
                         .simultaneousGesture(
@@ -99,12 +90,10 @@ struct CheckActivePersonView: View {
 
                             }
                         )
-                        
-                        // Not Active
                         NavigationLink(
                             destination: BullyOrDietView(),
                             label: {
-                                ButtonLabel(text: "全く運動しない", color: .red)
+                                ButtonLabel(text: "全くしない", color: .red)
                             }
                         )
                         .simultaneousGesture(
@@ -130,7 +119,6 @@ struct CheckActivePersonView: View {
     
 }
 
-// Reusable Button Label View
 struct ButtonLabel: View {
     let text: String
     let color: Color
@@ -155,4 +143,5 @@ struct ButtonLabel: View {
     }
     .environmentObject(ListViewModel())
 }
+
 

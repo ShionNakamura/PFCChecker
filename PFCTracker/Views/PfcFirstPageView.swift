@@ -16,7 +16,7 @@ struct PfcFirstPageView: View {
     
     var body: some View {
         
-        NavigationStack {  
+        NavigationStack {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
                                startPoint: .topLeading,
@@ -35,13 +35,13 @@ struct PfcFirstPageView: View {
                                 .foregroundColor(.yellow)
                                 .offset(x: 10, y: -5)
                         )
-                        .padding(.bottom, 30)
+                        .padding(.bottom, 20)
                     
-                    Text("理想の体になりたいあなたが１日で取らないといけないPFCが30秒でわかる")
-                        .font(.title2)
+                    Text("あなたが理想の体になりたい１日で取らないといけないPFCがすぐわかる")
+                        .font(.title3.bold())
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white.opacity(0.9))
-                        .padding(.horizontal, 30)
+                        .padding(.horizontal, 10)
                         .padding(.bottom, 50)
                     
                     Button(action: {
@@ -56,15 +56,13 @@ struct PfcFirstPageView: View {
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(
-                                LinearGradient(gradient: Gradient(colors: [animate ? .green : .red, .orange]), startPoint: .leading, endPoint: .trailing)
+                                LinearGradient(gradient: Gradient(colors: [.green, .orange]), startPoint: .leading, endPoint: .trailing)
                             )
                             .cornerRadius(15)
                             .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
                     }
                     .padding(.horizontal, 50)
-                    .onAppear {
-                        addAnimation()
-                    }
+                   
                     
                     Spacer()
                 }
@@ -76,14 +74,7 @@ struct PfcFirstPageView: View {
         }
     }
     
-    private func addAnimation() {
-        withAnimation(
-            .easeInOut(duration: 2.0)
-            .repeatForever()
-        ) {
-            animate.toggle()
-        }
-    }
+ 
 }
 
 #Preview {
@@ -92,3 +83,4 @@ struct PfcFirstPageView: View {
     }
     .environmentObject(ListViewModel())
 }
+

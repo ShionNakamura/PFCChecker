@@ -16,7 +16,6 @@ struct ConfirmationView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Background Gradient
                 LinearGradient(gradient: Gradient(colors: [.purple, .blue, .black]),
                                startPoint: .topLeading,
                                endPoint: .bottomTrailing)
@@ -33,7 +32,7 @@ struct ConfirmationView: View {
                         .padding(.top,20)
                     
                 }
-                .padding(.horizontal, 20)  // General padding for consistency
+                .padding(.horizontal, 20)
                 .frame(maxHeight: .infinity, alignment: .top)
                 .navigationDestination(isPresented: $navigateToNextView) {
                     PFCResultView()
@@ -45,7 +44,7 @@ struct ConfirmationView: View {
                 title: Text("最終確認"),
                 message: Text("全てのご自身の情報が間違ってないですか。"),
                 primaryButton: .destructive(Text("決定")) {
-                                    navigateToNextView.toggle() // Proceed to the next view if "Yes" is tapped
+                                    navigateToNextView.toggle()
                                 },
                 secondaryButton: .cancel()
             )
@@ -53,12 +52,12 @@ struct ConfirmationView: View {
     }
 
    private var headerView: some View {
-        Text("ご自身の最終情報")
+        Text("あなたの最終情報")
             .font(.largeTitle)
                .fontWeight(.semibold)
                .foregroundStyle(.white)
-               .multilineTextAlignment(.center) // Center the text when wrapping
-               .padding(.horizontal) // Add horizontal padding
+               .multilineTextAlignment(.center)
+               .padding(.horizontal)
                .padding(.top, 50)
     }
 
@@ -66,12 +65,12 @@ struct ConfirmationView: View {
         ScrollView{
 
             VStack(alignment: .leading, spacing: 50) {
-                userInfoRow(label: "性別:", value: listViewModel.model.gender ? "男性" : "女性")
-                userInfoRow(label: "年齢:", value: "\(String(format: "%.0f", listViewModel.model.age))歳")
-                userInfoRow(label: "身長:", value: "\(String(format: "%.0f", listViewModel.model.height))cm")
-                userInfoRow(label: "体重:", value: "\(String(format: "%.0f", listViewModel.model.weight))kg")
-                userInfoRow(label: "運動頻度:", value: listViewModel.model.frequencyWorkout)
-                userInfoRow(label: "現在の目標:", value: listViewModel.model.goal)
+                userInfoRow(label: "性別", value: listViewModel.model.gender ? "男性" : "女性")
+                userInfoRow(label: "年齢", value: "\(String(format: "%.0f", listViewModel.model.age))歳")
+                userInfoRow(label: "身長", value: "\(String(format: "%.0f", listViewModel.model.height))cm")
+                userInfoRow(label: "体重", value: "\(String(format: "%.0f", listViewModel.model.weight))kg")
+                userInfoRow(label: "運動頻度", value: listViewModel.model.frequencyWorkout)
+                userInfoRow(label: "現在の目標", value: listViewModel.model.goal)
                 
             }
             .padding(.horizontal, 30)
@@ -92,7 +91,6 @@ struct ConfirmationView: View {
 
     private var decisionButton: some View {
         Button(action: {
-//            navigateToNextView.toggle()
             showConfirmationAlert.toggle()
         }) {
             Text("結果を見る")
@@ -108,7 +106,7 @@ struct ConfirmationView: View {
                         radius: 30,
                         x: 0,
                         y:  50 )
-                .animation(.easeInOut(duration: 2.0).repeatForever(), value: animate)  // Applied animation here
+                .animation(.easeInOut(duration: 2.0).repeatForever(), value: animate)
 
         }
         .onAppear {
@@ -131,4 +129,5 @@ struct ConfirmationView: View {
     ConfirmationView()
         .environmentObject(ListViewModel())
 }
+
 

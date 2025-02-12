@@ -3,17 +3,15 @@ import SwiftUI
 struct PFCResultView: View {
     @EnvironmentObject var listViewModel: ListViewModel
     
-    // State to control animation
     @State private var showTitle = false
     @State private var showContent = false
-    @State private var navigateToNextView = false // State to control navigation
-    @State private var showButton = false // State to control button appearance
+    @State private var navigateToNextView = false
+    @State private var showButton = false
 
 
     var body: some View {
         NavigationStack {
             ZStack {
-                // Background Gradient
                 RadialGradient(gradient: Gradient(colors: [.purple, .blue]),
                                center: .center,
                                startRadius: 5,
@@ -21,13 +19,14 @@ struct PFCResultView: View {
                 .ignoresSafeArea()
                 
                 VStack(alignment: .leading, spacing: 10) {
-                    // Title
-                    resultFontDesign(text: "あなたの１日当たり取らないといけないPFCの数値は...",
+                    resultFontDesign(text: "あなたの１日当たり取らないといけないPFCの数値の目安は...",
                                      showContent: showTitle)
                     .font(.largeTitle)
                     .padding()
                     .padding(.top, 50)
                     Spacer()
+                    
+                
                     
                     // PFC Labels with larger font
                     VStack(alignment: .leading, spacing: 50) {
@@ -37,14 +36,14 @@ struct PFCResultView: View {
     
                 
                         HStack {
-                            resultFontDesign(text: "タンパク質 : \(String(format: "%.0f", listViewModel.proteinCalc()))g",
+                            resultFontDesign(text: "タンパク質 : 約\(String(format: "%.0f", listViewModel.proteinCalc()))g",
                                              showContent: showContent)
                             resultFontDesign(text: "/ \(String(format: "%.0f", listViewModel.proteinCalc()*4))cal",
                                              showContent: showContent)
                         }
                         
                         HStack {
-                            resultFontDesign(text: "脂質 : \(String(format: "%.0f", listViewModel.fatCalc()))g",
+                            resultFontDesign(text: "脂質 : 約\(String(format: "%.0f", listViewModel.fatCalc()))g",
                                              showContent: showContent)
                             resultFontDesign(text: "/ \(String(format: "%.0f", listViewModel.fatCalc()*9))cal",
                                              showContent: showContent)
@@ -52,21 +51,21 @@ struct PFCResultView: View {
                         }
                         
                         HStack {
-                            resultFontDesign(text: "炭水化物 : \(String(format: "%.0f", listViewModel.carboCalc()))g",
+                            resultFontDesign(text: "炭水化物 : 約\(String(format: "%.0f", listViewModel.carboCalc()))g",
                                              showContent: showContent)
                             resultFontDesign(text: "/ \(String(format: "%.0f", listViewModel.carboCalc()*4))cal",
                                              showContent: showContent)
                         }
                     }
-                    .padding(.horizontal, 30)
+                    .padding(.horizontal, 20)
                     .padding(.bottom, 105)
                     Spacer()
                     if showButton{
                         NavigationLink(destination: PfcFirstPageView()
-                            .navigationBarBackButtonHidden(true) // Hide back button to prevent going back
+                            .navigationBarBackButtonHidden(true)
                             .onAppear {
                                 
-                                listViewModel.resetData() // Reset data on navigation
+                                listViewModel.resetData()
                                 
                             }
                         ) {
@@ -107,7 +106,7 @@ struct PFCResultView: View {
             }
            
         }
-        .navigationBarBackButtonHidden(true) // Hide the back button in this view too
+        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -150,3 +149,4 @@ struct procesDesign: View {
     }
     .environmentObject(ListViewModel())
 }
+
