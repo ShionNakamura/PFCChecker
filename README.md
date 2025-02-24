@@ -19,7 +19,10 @@ PFC Checker では、以下のことができます：
 ## デモ動画
 
 
-https://github.com/user-attachments/assets/cd168f2f-2d74-400f-9065-b49a5ecd8717
+
+
+https://github.com/user-attachments/assets/f0b33721-f3cc-4f6b-bf56-2c4940cf4419
+
 
 
 
