@@ -23,7 +23,6 @@ struct PFCResultView: View {
                                      showContent: showTitle)
                     .font(.largeTitle)
                     .padding()
-                    .padding(.top, 50)
                     Spacer()
                     
                 
@@ -56,6 +55,10 @@ struct PFCResultView: View {
                             resultFontDesign(text: "/ \(String(format: "%.0f", listViewModel.carboCalc()*4))cal",
                                              showContent: showContent)
                         }
+                        
+                        NavigationLink("Learn More", destination: LearnMoreView())
+                            .foregroundStyle(.black)
+
                     }
                     .padding(.horizontal, 20)
                     .padding(.bottom, 105)
@@ -140,6 +143,30 @@ struct procesDesign: View {
             .foregroundStyle(.white)
             .opacity(showContent ? 1 : 0)
             .animation(.easeOut(duration: 1.5), value: showContent)
+    }
+}
+
+struct LearnMoreView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Sources & References")
+                .font(.title3)
+                .bold()
+            
+          
+                Link("BMR Calculation", destination: URL(string: "https://pubmed.ncbi.nlm.nih.gov/2305711/")!)
+                
+                Link("TDEE Calculation", destination: URL(string: "https://www.science.org/doi/10.1126/science.abe5017")!)
+                
+                Link("Protein Intake", destination: URL(string: "https://jissn.biomedcentral.com/articles/10.1186/s12970-018-0215-1")!)
+                
+                Link("Fat & Carb Distribution ", destination: URL(string: "https://www.who.int/news/item/17-07-2023-who-updates-guidelines-on-fats-and-carbohydrates")!)
+                
+                
+            
+            Spacer()
+        }
+        .padding()
     }
 }
 
