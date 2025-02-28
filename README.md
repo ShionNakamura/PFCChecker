@@ -45,4 +45,4 @@ Quick PFC Checker は、美しいボディーメイクに健康管理をサポ�
 
 アプリのダウンロードはこちら
 --
-https://apps.apple.com/us/app/quick-pfcchecker/id6742369478?platform=ipad
+https://apps.apple.com/us/app/quick-pfcchecker/id6742369478?platform=iphone
