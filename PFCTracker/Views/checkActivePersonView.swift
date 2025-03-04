@@ -37,72 +37,74 @@ struct CheckActivePersonView: View {
                     Spacer()
                     
                     // Navigation Buttons
-                    VStack(spacing: 20) {
-                        // Frequently Active
-                        NavigationLink(
-                            destination: BullyOrDietView(),
-                            label: {
-                                ButtonLabel(text: "週6回以上", color: .green)
-                            }
-                        )
-                        .simultaneousGesture(
-                            TapGesture().onEnded {
-                                listViewModel.model.activeFactor = 1.9
-                                listViewModel.model.frequencyWorkout = "週6以上運動する"
-                            }
-                        )
-                        NavigationLink(
-                            destination: BullyOrDietView(),
-                            label: {
-                                ButtonLabel(text: " 週に4~5回", color: .blue)
-
-                            }
-                        )
-                        .simultaneousGesture(
-                            TapGesture().onEnded {
-                                listViewModel.model.activeFactor = 1.725
-                                listViewModel.model.frequencyWorkout =  " 週に4~5回運動する"
-                            }
-                        )
-                        NavigationLink(
-                            destination: BullyOrDietView(),
-                            label: {
-                                ButtonLabel(text:" 週に2~3回", color: .yellow)
-                            }
-                        )
-                        .simultaneousGesture(
-                            TapGesture().onEnded {
-                                listViewModel.model.activeFactor = 1.55
-                                listViewModel.model.frequencyWorkout = "週に２〜３回運動する"
-
-                            }
-                        )
-                        NavigationLink(
-                            destination: BullyOrDietView(),
-                            label: {
-                                ButtonLabel(text: "週に１回", color: .orange)
-                            }
-                        )
-                        .simultaneousGesture(
-                            TapGesture().onEnded {
-                                listViewModel.model.activeFactor = 1.375
-                                listViewModel.model.frequencyWorkout = "週に１回は運動する"
-
-                            }
-                        )
-                        NavigationLink(
-                            destination: BullyOrDietView(),
-                            label: {
-                                ButtonLabel(text: "全くしない", color: .red)
-                            }
-                        )
-                        .simultaneousGesture(
-                            TapGesture().onEnded {
-                                listViewModel.model.activeFactor = 1.2
-                                listViewModel.model.frequencyWorkout =  "全く運動しない"
-
-                            }
-                        )
+                    ScrollView{
+                        VStack(spacing: 20) {
+                            // Frequently Active
+                            NavigationLink(
+                                destination: BullyOrDietView(),
+                                label: {
+                                    ButtonLabel(text: "週6回以上", color: .green)
+                                }
+                            )
+                            .simultaneousGesture(
+                                TapGesture().onEnded {
+                                    listViewModel.model.activeFactor = 1.9
+                                    listViewModel.model.frequencyWorkout = "週6以上運動する"
+                                }
+                            )
+                            NavigationLink(
+                                destination: BullyOrDietView(),
+                                label: {
+                                    ButtonLabel(text: " 週に4~5回", color: .blue)
+                                    
+                                }
+                            )
+                            .simultaneousGesture(
+                                TapGesture().onEnded {
+                                    listViewModel.model.activeFactor = 1.725
+                                    listViewModel.model.frequencyWorkout =  " 週に4~5回運動する"
+                                }
+                            )
+                            NavigationLink(
+                                destination: BullyOrDietView(),
+                                label: {
+                                    ButtonLabel(text:" 週に2~3回", color: .yellow)
+                                }
+                            )
+                            .simultaneousGesture(
+                                TapGesture().onEnded {
+                                    listViewModel.model.activeFactor = 1.55
+                                    listViewModel.model.frequencyWorkout = "週に２〜３回運動する"
+                                    
+                                }
+                            )
+                            NavigationLink(
+                                destination: BullyOrDietView(),
+                                label: {
+                                    ButtonLabel(text: "週に１回", color: .orange)
+                                }
+                            )
+                            .simultaneousGesture(
+                                TapGesture().onEnded {
+                                    listViewModel.model.activeFactor = 1.375
+                                    listViewModel.model.frequencyWorkout = "週に１回は運動する"
+                                    
+                                }
+                            )
+                            NavigationLink(
+                                destination: BullyOrDietView(),
+                                label: {
+                                    ButtonLabel(text: "全くしない", color: .red)
+                                }
+                            )
+                            .simultaneousGesture(
+                                TapGesture().onEnded {
+                                    listViewModel.model.activeFactor = 1.2
+                                    listViewModel.model.frequencyWorkout =  "全く運動しない"
+                                    
+                                }
+                            )
+                        }
                     }
                     .padding(.horizontal, 20)
                     
