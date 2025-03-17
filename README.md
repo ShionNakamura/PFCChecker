@@ -31,7 +31,6 @@ https://github.com/user-attachments/assets/f0b33721-f3cc-4f6b-bf56-2c4940cf4419
 - 開発言語: Swift
 - フレームワーク: SwiftUI
 - **アーキテクチャ**: MVVM
-- **UIデザイン**: カラーテーマ（紫・青・黒）を使用した直感的なデザイン
 
 ## 実装予定の機能
 
