@@ -42,6 +42,12 @@ https://github.com/user-attachments/assets/f0b33721-f3cc-4f6b-bf56-2c4940cf4419
 
 Quick PFC Checker は、美しいボディーメイクに健康管理をサポートするシンプルで実用的なツールを目指しています。今後も機能追加やUI改善を行いながら、ユーザーが無理なく簡単に続けられるようなアプリにしていきます。
 
+お問い合わせ
+--
+バグ報告やフィードバック等は、以下のフォームから送信できます。
+
+email: shionnakamura0120@gmail.com
+
 📲 アプリのダウンロードはこちら
 --
 https://apps.apple.com/us/app/quick-pfcchecker/id6742369478?platform=iphone
