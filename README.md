@@ -46,7 +46,7 @@ Quick PFC Checker は、美しいボディーメイクに健康管理をサポ�
 --
 バグ報告やフィードバック等は、以下のフォームから送信できます。
 
-email: shionnakamura0120@gmail.com
+📩 email: shionnakamura0120@gmail.com
 
 📲 アプリのダウンロードはこちら
 --
