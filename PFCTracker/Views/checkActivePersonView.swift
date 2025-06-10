@@ -14,7 +14,7 @@ struct CheckActivePersonView: View {
 
                 VStack(spacing: 20) {
                     
-                    Text("あなたの有酸素運動の頻度は?")
+                    Text("普段のあなたの運動の頻度は?")
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
@@ -25,6 +25,7 @@ struct CheckActivePersonView: View {
                         Text("• 土日のみ運動する方は、週に２〜３回運動するを。")
                         Text("• 平日の１日の平均歩数計が約8000歩以上であれば週に4〜5回運動するを。")
                         Text("• 全く日常で動かなく１日の平均歩数計が約2000歩以下なら、全くしないを。")
+                        
                     }
                     .font(.headline)
                     .foregroundStyle(.white)

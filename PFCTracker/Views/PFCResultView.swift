@@ -63,6 +63,7 @@ struct PFCResultView: View {
                     .padding(.horizontal, 20)
                     .padding(.bottom, 105)
                     Spacer()
+                    
                     if showButton{
                         NavigationLink(destination: PfcFirstPageView()
                             .navigationBarBackButtonHidden(true)
