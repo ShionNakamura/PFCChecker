@@ -32,10 +32,7 @@ https://github.com/user-attachments/assets/f0b33721-f3cc-4f6b-bf56-2c4940cf4419
 - フレームワーク: SwiftUI
 - **アーキテクチャ**: MVVM
 
-## 実装予定の機能
 
-- **リマインダー機能**: 食事記録のリマインダー通知
-- データ管理機能
 
 
 ## 終わりに
